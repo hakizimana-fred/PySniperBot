@@ -1,6 +1,12 @@
 from flask import Flask
 from lib import mempool
 from dotenv import load_dotenv
+from configs import environment
+import os
+
+
+load_dotenv()
+print(os.getenv('Name'))
 
 
 class Server:
@@ -15,7 +21,8 @@ class Server:
 
     def run(self, host='127.0.0.1', port=5000, debug=True):
         mempool.MempoolTxns(
-            "wss://eth-goerli.g.alchemy.com/v2/8uP_tixba9AbzNWxekZcSE1EBeKPTLdK")
+            environment.Environment.node_provider
+        )
         self.app.run(host=host, port=port, debug=debug)
 
 
