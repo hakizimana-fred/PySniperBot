@@ -1,4 +1,7 @@
 from web3.auto import Web3
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 
 class MempoolTxns:
@@ -7,4 +10,7 @@ class MempoolTxns:
         if not self.web3.is_connected():
             raise ValueError("Connection to Ethereum node Failed")
         else:
-            print("Successfully connected to Ethereum node")
+            logging.info("Successfully connected to Ethereum node")
+
+    def filter_pending_transactions(self):
+        return self.web3.eth.filter('pending')

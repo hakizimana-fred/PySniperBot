@@ -1,12 +1,9 @@
 from flask import Flask
-from lib import mempool
-from dotenv import load_dotenv
+from lib import mempool, gracefull_shutdown
 from configs import environment
-import os
+import signal
 
-
-load_dotenv()
-print(os.getenv('Name'))
+signal.signal(signal.SIGINT, gracefull_shutdown.SignalHandler.register)
 
 
 class Server:
