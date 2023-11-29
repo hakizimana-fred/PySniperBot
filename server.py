@@ -19,7 +19,7 @@ class Server:
     def run(self, host='127.0.0.1', port=5000, debug=True):
         mempool.MempoolTxns(
             environment.Environment.node_provider
-        )
+        ).filter_pending_transactions()
         self.app.run(host=host, port=port, debug=debug)
 
 
